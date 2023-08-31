@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Instructions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Task
 
-## Available Scripts
+You've learned how to code a custom hook in React.
 
-In the project directory, you can run:
+In this code lab, you'll practice writing a brand new custom hook.
 
-### `npm start`
+The starter code for this app contains code that will display the day of the week within an h1 heading, for example: "Today is: Monday".
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+There is also a button under this heading, that reads "Get next day".
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+When a user clicks on this button, the h1 heading updates so that the message shows the next day in the sequence.
 
-### `npm test`
+Your task is to complete the custom hook named `usePrevious` so that the h1 heading shows both the current day and the previous current day before the update.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Note:** Before you begin, make sure you understand how to work with the Coursera Code Lab for the [Advanced React course](https://www.coursera.org/learn/advanced-react/supplement/htaLX/working-with-labs-in-this-course).
 
-### `npm run build`
+## Steps
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **Step 1**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open the `App.js` file and locate the `usePrevious()` function as in the below code snippet.
+```js
+function usePrevious(val) {
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+}
+```
 
-### `npm run eject`
+Inside the `usePrevious()` function's code block, invoke the `useRef` hook without any arguments, and assign this invocation to a variable named `ref`, declared using the `const` keyword.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **Step 2**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Next, inside the `usePrevious()` function declaration, add a call to the `useEffect()` hook.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### **Step 3**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Now, pass two parameters, as an argument to the `useEffect()` call.
 
-## Learn More
+The first parameter should be an arrow function that doesn't accept and arguments. Inside the arrow function's body, assign the `val` value to the `current` property on the `ref` object.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The second parameter is the dependency array. The dependency array should list a single variable to be tracked - namely, the `val` variable.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### **Step 4**
 
-### Code Splitting
+Add one more line to the body of the `usePrevious()` function declaration, specifying the return value of this function.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The `usePrevious()` function should return the `ref.current` value.
 
-### Analyzing the Bundle Size
+### Conclusion
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Save the changes and run the app.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Use the checklist below to verify that the completed app is behaving as required:
+1. It shows a heading that reads: "Today is: Monday"
+2. When the user clicks the "Get next day" button, this updates the heading, which now spans two lines.
+3. The first line of the updated heading now reads "Today is: Tuesday", and the second line reads "Previous work day was: Monday".
